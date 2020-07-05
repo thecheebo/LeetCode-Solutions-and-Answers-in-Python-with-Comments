@@ -1,5 +1,5 @@
-```https://leetcode.com/problems/merge-two-sorted-lists/solution/
-```
+'''https://leetcode.com/problems/merge-two-sorted-lists/solution/
+'''
 
 
 class Solution():
@@ -31,3 +31,48 @@ f = a.ListNode(45, e)
 g = a.ListNode(35, f)
 
 a.mergeTwoLists(d,g)
+
+'''
+or this
+
+
+class Solution():
+    class ListNode:
+        def __init__(self, val=0, next=None):
+            self.val = val
+            self.next = next
+        
+    def mergeTwoLists(self, l1, l2):
+        if l1.val <= l2.val:
+
+            answer = self.ListNode(l1.val)
+            new = answer
+            l1 = l1.next
+  
+        else:
+
+            answer = self.ListNode(l2.val)
+            new = answer
+            l2 = l2.next
+
+        while l1 != None or l2 != None or new.next != None:
+            while l1 and l2:
+                if l1.val <= l2.val:
+                    new.next = l1 
+                    l1 = l1.next
+                    new = new.next
+                else:
+                    new.next = l2
+                    l2 = l2.next
+                    new = new.next
+            if l1:
+                new.next = l1
+                l1 = l1.next
+                new = new.next
+            else:
+                new.next = l2
+                l2 = l2.next
+                new = new.next
+        
+        return answer
+'''
