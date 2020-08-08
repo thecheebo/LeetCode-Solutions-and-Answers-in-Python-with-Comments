@@ -1,3 +1,9 @@
+"""
+https://leetcode.com/problems/design-hashmap/
+
+Python Implementation.
+"""
+
 class MyHashMap(object):
         
     def __init__(self):
@@ -18,7 +24,7 @@ class MyHashMap(object):
         for i in xrange(len(self.hash_table[index])):
             
             # Store the key and value 
-            k , val =self.hash_table[index][i]
+            k , v =self.hash_table[index][i]
             
             # If the key in the hash table is given
             if k == key:
@@ -33,35 +39,39 @@ class MyHashMap(object):
         
 
     def get(self, key):
-        """
-        Returns the value to which the specified key is mapped, or -1 if this map contains no mapping for the key
-        :type key: int
-        :rtype: int
-        """
-        index=key%self.hash_key
-        adj_ls = self.hash_table[index]
-        
+
+        # Finding the index to where the key is located by dividing the key by the hash key
+        index = key % self.hash_key
+
         # Iterate through the list at the location of the list. If key is = a key in the list, return the value.
-        for i in xrange(len(adj_ls)):
-            k, v = adj_ls[i]
+        for i in xrange(len(self.hash_table[index])):
+            
+            # Store the key and value
+            k, v = self.hash_table[index][i]
+            
+             # If the key in the hash table is given
             if k == key:
+                
+                # Return value
                 return v
+            
         # Per specs, return -1 as the key has not been found.
         return -1
             
-
     def remove(self, key):
-        """
-        Removes the mapping of the specified value key if this map contains a mapping for the key
-        :type key: int
-        :rtype: None
-        """
-        
-        index=key%self.hash_key
-        adj_ls=self.hash_table[index]
-        for i in xrange(len(adj_ls)):
- 
-            k,v=adj_ls[i]
-            if k==key:
-                adj_ls.remove((k,v))
+
+        # Finding the index to where the key is located by dividing the key by the hash key
+        index = key % self.hash_key
+
+        # Iterate through the list at the location of the list
+        for i in xrange(len(self.hash_table[index])):
+            
+            # Store the key and value
+            k,v =self.hash_table[index][i]
+    
+            # If the key value of the tuple is = to the lookup key,  then remove the tuple from the list.
+            if k == key:
+            
+                # Remove tuple
+                self.hash_table[index].remove((k,v))
                 return
