@@ -1,7 +1,7 @@
 """
 https://leetcode.com/problems/design-hashmap/
 
-Python Implementation.
+Python Implementation
 """
 
 class MyHashMap(object):
