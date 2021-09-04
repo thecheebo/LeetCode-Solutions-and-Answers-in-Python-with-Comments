@@ -48,15 +48,13 @@ class Solution:
         total_sum = sum(nums)
         
         if total_sum % 2: return False
-        target = total_sum / 2
-        partial_sums = {0}
-        for num in nums:
-            temp_set = partial_sums.copy()
-            for partial in partial_sums:
-                temp_set.add(partial + num)
-            #partial_sums.add()
-            partial_sums = temp_set    
-        return True if target in partial_sums else False
-           
+        subset_sum = total_sum // 2
         
-        
+         # construct a dp table of size (subset_sum + 1)
+        dp = [False] * (subset_sum + 1)
+        dp[0] = True
+        for curr in nums:
+            for j in range(subset_sum, curr - 1, -1):
+                dp[j] = dp[j] or dp[j - curr]
+
+        return dp[subset_sum]
