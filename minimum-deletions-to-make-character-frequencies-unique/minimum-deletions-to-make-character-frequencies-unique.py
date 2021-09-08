@@ -51,6 +51,7 @@ class Solution:
     def minDeletions(self, s: str) -> int:
         cnt, res, used = collections.Counter(s), 0, set()
         for ch, freq in cnt.items():
+            #filling up a set with the lowest frequencies, and go down, every time you have to shift, you will go up in res, and go down in freq.
             while freq > 0 and freq in used:
                 freq -= 1
                 res += 1
